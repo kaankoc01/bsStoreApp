@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using Repositories.Ef_Core;
+using Services.Contracts;
 using WebApi.Extensions;
 
 
@@ -25,11 +27,20 @@ builder.Services.ConfigureLoggerService();
 
 var app = builder.Build();
 
+
+var logger = app.Services.GetRequiredService<ILoggerService>();
+app.ConfigureExceptionHandler(logger);
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+if (app.Environment.IsProduction())
+{
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
