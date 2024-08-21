@@ -12,9 +12,15 @@ LogManager.LoadConfiguration(String.Concat(Directory.GetCurrentDirectory(), "/nl
 
 // Add services to the container.
 
-builder.Services.AddControllers()
-    .AddApplicationPart(typeof(Presentation.AssemblyReferance).Assembly)
-    .AddNewtonsoftJson();
+builder.Services.AddControllers(config =>
+{
+    config.RespectBrowserAcceptHeader = true;
+    config.ReturnHttpNotAcceptable = true;
+})
+.AddCustomCsvFormatter()
+.AddXmlDataContractSerializerFormatters() // xml içerik pazarlýðý
+.AddApplicationPart(typeof(Presentation.AssemblyReferance).Assembly)
+.AddNewtonsoftJson();
 
 
 builder.Services.AddEndpointsApiExplorer();

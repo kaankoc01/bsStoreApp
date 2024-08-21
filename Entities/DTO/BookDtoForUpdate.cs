@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace Entities.DTO
 {
     public record BookDtoForUpdate(int id , String Title , decimal Price);
+
    
 }
