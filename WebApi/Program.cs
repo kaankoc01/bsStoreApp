@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using Repositories.Ef_Core;
@@ -21,6 +22,11 @@ builder.Services.AddControllers(config =>
 .AddXmlDataContractSerializerFormatters() // xml içerik pazarlýðý
 .AddApplicationPart(typeof(Presentation.AssemblyReferance).Assembly)
 .AddNewtonsoftJson();
+
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
 
 
 builder.Services.AddEndpointsApiExplorer();
