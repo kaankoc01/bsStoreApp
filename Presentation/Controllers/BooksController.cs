@@ -2,10 +2,12 @@
 using Entities.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 using Services.Contracts;
 
 namespace Presentation.Controllers
 {
+    [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/books")]
     public class BooksController : ControllerBase
@@ -40,17 +42,11 @@ namespace Presentation.Controllers
 
         }
 
+        [ServiceFilter(typeof(ValidationFilterAttribute))]   // doğrulamaları validationfilterattribute üzerinden yaptık.
         [HttpPost]
         public async Task<IActionResult> CreateOneBookAsync(BookDtoForInsertion bookDto)
         {
-
-            if (bookDto == null)
-                return BadRequest(); // 400
-
-            if (!ModelState.IsValid)
-            {
-                return UnprocessableEntity(ModelState);
-            }
+            
 
             var book = await _manager.BookService.CreateOneBookAsync(bookDto);
 
@@ -58,16 +54,12 @@ namespace Presentation.Controllers
 
 
         }
+        [ServiceFilter(typeof(LogFilterAttribute))]
+        [ServiceFilter(typeof(ValidationFilterAttribute))] 
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateOneBookAsync(int id, BookDtoForUpdate bookDto)
         {
-            if (bookDto == null)
-                return BadRequest(); // 400
-            //book var mı yok mu kontrol , güncellenecek kitabın bilgisini çekiyor 
-
-            if (!ModelState.IsValid)
-                return UnprocessableEntity(ModelState); // 422
-
+        
             await _manager.BookService.UpdateOneBookAsync(id, bookDto, false);
 
             return NoContent(); //204
