@@ -9,6 +9,7 @@ namespace Repositories.Contracts
     public interface IRepositoryManager
     {
         IBookRepository Book{ get; }
-        void Save();
+        // geri dönüş tipi void ise task in içi boş yazılır
+        Task SaveAsync();
     }
 }
