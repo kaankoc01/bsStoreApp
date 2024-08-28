@@ -14,6 +14,12 @@ namespace Entities.LinkModels
 
         public Link() { }
 
-        public Link(string href, string rel, string? method) { }
+        public Link(string href, string rel, string? method)
+        {
+            Href= href;
+            Rel= rel;
+            Method= method;
+        
+        }
     }
 }

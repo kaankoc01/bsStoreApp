@@ -70,24 +70,33 @@ namespace Entities.Models
         {
             writer.WriteStartElement(key);
 
-            if (value.GetType() == typeof(List<Link>))
+            if (value is List<Link> links)
             {
-                foreach (var val in value as List<Link>)
+                foreach (var val in links)
                 {
                     writer.WriteStartElement(nameof(Link));
-                    WriteLinksToXml(nameof(val.Href), val.Href, writer);
-                    WriteLinksToXml(nameof(val.Method), val.Method, writer);
-                    WriteLinksToXml(nameof(val.Rel), val.Rel, writer);
+
+                    // Alt alanlar için null kontrolü yapılabilir
+                    if (!string.IsNullOrEmpty(val.Href))
+                        WriteLinksToXml(nameof(val.Href), val.Href, writer);
+
+                    if (!string.IsNullOrEmpty(val.Method))
+                        WriteLinksToXml(nameof(val.Method), val.Method, writer);
+
+                    if (!string.IsNullOrEmpty(val.Rel))
+                        WriteLinksToXml(nameof(val.Rel), val.Rel, writer);
+
                     writer.WriteEndElement();
                 }
             }
-            else
+            else if (value != null)
             {
                 writer.WriteString(value.ToString());
             }
 
             writer.WriteEndElement();
         }
+
 
         public void Add(string key, object value)
         {
