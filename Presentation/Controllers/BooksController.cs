@@ -23,7 +23,7 @@ namespace Presentation.Controllers
             _manager = manager;
         }
         [HttpHead]
-        [HttpGet]
+        [HttpGet(Name = "GetAllBooksAsync")]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParameters bookParameters)
         {
@@ -57,7 +57,7 @@ namespace Presentation.Controllers
         }
 
         [ServiceFilter(typeof(ValidationFilterAttribute))]   // doğrulamaları validationfilterattribute üzerinden yaptık.
-        [HttpPost]
+        [HttpPost(Name = "CreateOneBookAsync")]
         public async Task<IActionResult> CreateOneBookAsync(BookDtoForInsertion bookDto)
         {
 

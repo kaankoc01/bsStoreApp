@@ -7,6 +7,7 @@ using Repositories.Contracts;
 using Repositories.Ef_Core;
 using Services;
 using Services.Contracts;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WebApi.Extensions
 {
@@ -64,6 +65,8 @@ namespace WebApi.Extensions
                 if(systemTextJsonOutputFormatter is not null)
                 {
                     systemTextJsonOutputFormatter.SupportedMediaTypes.Add("application/vnd.btkakademi.hateoas+json");
+
+                    systemTextJsonOutputFormatter.SupportedMediaTypes.Add("application / vnd.btkakademi.apiroot+json");
                 }
 
                 var xmlOutputFormatter = config.OutputFormatters.OfType<XmlDataContractSerializerOutputFormatter>()?.FirstOrDefault();
@@ -71,7 +74,11 @@ namespace WebApi.Extensions
                 if(xmlOutputFormatter is not null)
                 {
                     xmlOutputFormatter.SupportedMediaTypes.Add("application/vnd.btkakademi.hateoas+xml");
+
+                    xmlOutputFormatter.SupportedMediaTypes.Add("application/vnd.btkakademi.apiroot+xml");
                 }
+
+
 
             });
         }
