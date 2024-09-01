@@ -61,7 +61,7 @@ namespace Presentation.Controllers
 
         }
 
-        [ServiceFilter(typeof(ValidationFilterAttribute))]   // doğrulamaları validationfilterattribute üzerinden yaptık.
+        [ServiceFilter(typeof(ValidationFilterAttribute))] 
         [HttpPost(Name = "CreateOneBookAsync")]
         public async Task<IActionResult> CreateOneBookAsync(BookDtoForInsertion bookDto)
         {
