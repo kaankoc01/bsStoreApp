@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Ef_Core.Config;
+using System.Reflection;
 
 
 namespace Repositories.Ef_Core
@@ -17,7 +18,9 @@ namespace Repositories.Ef_Core
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.ApplyConfiguration(new BookConfig());
+            //modelBuilder.ApplyConfiguration(new BookConfig());
+            //modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }
 }
