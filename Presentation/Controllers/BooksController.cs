@@ -12,12 +12,12 @@ using System.Text.Json;
 
 namespace Presentation.Controllers
 {
- //   [ApiVersion("1.0")]
+    //   [ApiVersion("1.0")]
     [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/books")]
     //   [ResponseCache(CacheProfileName = "5mins")]
-  //  [HttpCacheExpiration(CacheLocation = CacheLocation.Public , MaxAge =80)]
+    //  [HttpCacheExpiration(CacheLocation = CacheLocation.Public , MaxAge =80)]
     public class BooksController : ControllerBase
     {
         // IOC register, resolve , dispose
@@ -31,7 +31,7 @@ namespace Presentation.Controllers
         [HttpHead]
         [HttpGet(Name = "GetAllBooksAsync")]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
-   //     [ResponseCache(Duration =60)]
+        //     [ResponseCache(Duration =60)]
         public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParameters bookParameters)
         {
             var linkParameters = new LinkParameters()
@@ -48,9 +48,8 @@ namespace Presentation.Controllers
                 Ok(result.linkResponse.LinkedEntities) :
                 Ok(result.linkResponse.ShapedEntities);
 
-
-
         }
+        [Authorize]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetOneBooksAsync(int id)
         {
@@ -63,7 +62,8 @@ namespace Presentation.Controllers
 
         }
 
-        [ServiceFilter(typeof(ValidationFilterAttribute))] 
+        [Authorize(Roles = "Editor,Admin")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost(Name = "CreateOneBookAsync")]
         public async Task<IActionResult> CreateOneBookAsync(BookDtoForInsertion bookDto)
         {
@@ -75,6 +75,8 @@ namespace Presentation.Controllers
 
 
         }
+
+        [Authorize(Roles = "Editor,Admin")]
         [ServiceFilter(typeof(LogFilterAttribute))]
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPut("{id:int}")]
@@ -88,6 +90,7 @@ namespace Presentation.Controllers
 
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteOneBookAsync(int id, Book book)
         {
@@ -97,6 +100,7 @@ namespace Presentation.Controllers
 
         }
 
+        [Authorize(Roles = "Editor,Admin")]
         [HttpPatch("{id:int}")]
         public async Task<IActionResult> PartiallUpdateOneBookAsync(int id, JsonPatchDocument<BookDtoForUpdate> bookPatch)
         {
@@ -123,13 +127,13 @@ namespace Presentation.Controllers
 
 
         }
-
+        [Authorize]
         [HttpOptions]
         public IActionResult GetBooksOptions()
         {
             Response.Headers.Add("Allow", "GET,PUT,POST,PATCH,DELETE,HEAD,OPTIONS");
             return Ok();
         }
-       
+
     }
 }
