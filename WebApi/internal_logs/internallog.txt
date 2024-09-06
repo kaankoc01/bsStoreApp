@@ -486,3 +486,19 @@
 2024-09-05 03:46:15.5371 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
 2024-09-05 03:46:15.5608 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\90537\source\repos\bsStoreApp\WebApi\nlog.config
 2024-09-05 03:46:15.5790 Info Configuration initialized.
+2024-09-06 03:25:00.4313 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-06 03:25:00.4456 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-06 03:25:00.4456 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\90537\source\repos\bsStoreApp\WebApi\nlog.config
+2024-09-06 03:25:00.4658 Info Configuration initialized.
+2024-09-06 03:25:01.5374 Info AppDomain Shutting down. LogFactory closing...
+2024-09-06 03:25:01.5374 Info LogFactory has been closed.
+2024-09-06 03:25:26.2410 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-06 03:25:26.2410 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-06 03:25:26.2648 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\90537\source\repos\bsStoreApp\WebApi\nlog.config
+2024-09-06 03:25:26.2755 Info Configuration initialized.
+2024-09-06 03:25:27.4518 Info AppDomain Shutting down. LogFactory closing...
+2024-09-06 03:25:27.4602 Info LogFactory has been closed.
+2024-09-06 04:36:13.5167 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-09-06 04:36:13.5807 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.3.2683. Product version: 5.3.3+341c753ad4dce4dd476dcf0bc3ff2cfd9db76493. GlobalAssemblyCache: False
+2024-09-06 04:36:13.6028 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\90537\source\repos\bsStoreApp\WebApi\nlog.config
+2024-09-06 04:36:13.6218 Info Configuration initialized.
