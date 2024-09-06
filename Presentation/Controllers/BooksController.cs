@@ -18,6 +18,7 @@ namespace Presentation.Controllers
     [Route("api/books")]
     //   [ResponseCache(CacheProfileName = "5mins")]
     //  [HttpCacheExpiration(CacheLocation = CacheLocation.Public , MaxAge =80)]
+    [ApiExplorerSettings(GroupName = "v1")]
     public class BooksController : ControllerBase
     {
         // IOC register, resolve , dispose
