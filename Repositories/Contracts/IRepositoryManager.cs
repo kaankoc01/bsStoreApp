@@ -8,6 +8,7 @@ namespace Repositories.Contracts
 {
     public interface IRepositoryManager
     {
+        ICategoryRepository Category { get; }
         IBookRepository Book{ get; }
         // geri dönüş tipi void ise task in içi boş yazılır
         Task SaveAsync();
