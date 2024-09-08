@@ -30,7 +30,7 @@ namespace WebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -72,11 +72,11 @@ namespace WebApi.Migrations
 
             modelBuilder.Entity("Entities.Models.Category", b =>
                 {
-                    b.Property<int?>("CategoryId")
+                    b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("CategoryId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CategoryId"), 1L, 1);
 
                     b.Property<string>("CategoryName")
                         .IsRequired()
@@ -210,22 +210,22 @@ namespace WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "19af9609-6376-4062-af08-4ba4989b4138",
-                            ConcurrencyStamp = "2f6a7df3-7190-4131-8f16-1057338d3196",
+                            Id = "9ebb1af0-579a-498e-8155-1d621949782b",
+                            ConcurrencyStamp = "98456629-db0a-402a-a5f1-640709b05c9e",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "7ccf0c84-4fc8-40e5-922a-a68537d05276",
-                            ConcurrencyStamp = "abbffe80-b9f0-47d4-8079-2a36166a08c1",
+                            Id = "70f99bc5-4612-46a4-87ad-6f19081597bb",
+                            ConcurrencyStamp = "88e059c2-da4e-4d66-984e-e077e5f9d0f6",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "39c43718-ad97-4bda-bfa9-5a3fc5e8833a",
-                            ConcurrencyStamp = "451af31b-882c-4dda-bef1-e3225396f775",
+                            Id = "4dcbc0a1-a8b3-4299-98ff-96dd2432bc2f",
+                            ConcurrencyStamp = "841c3210-2c32-4334-b0a0-ad95d6b68d2c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -341,7 +341,9 @@ namespace WebApi.Migrations
                 {
                     b.HasOne("Entities.Models.Category", "Category")
                         .WithMany("Books")
-                        .HasForeignKey("CategoryId");
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Category");
                 });
