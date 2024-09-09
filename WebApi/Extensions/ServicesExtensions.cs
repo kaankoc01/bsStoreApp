@@ -2,6 +2,7 @@
 using Entities.DTO;
 using Entities.Models;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ using Services.Contracts;
 using System.Runtime.Intrinsics;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
+using IAuthenticationService = Services.Contracts.IAuthenticationService;
 
 namespace WebApi.Extensions
 {
@@ -191,11 +193,12 @@ namespace WebApi.Extensions
         {
             services.AddSwaggerGen(s =>
             {
-                s.SwaggerDoc("v1", new OpenApiInfo {
+                s.SwaggerDoc("v1", new OpenApiInfo
+                {
                     Title = "BTK Akademi ",
                     Version = "v1",
                     Description = "BTK Akademi ASP.NET CORE Web API",
-                    TermsOfService = new Uri("https://www.btkakademi.gov.tr") ,
+                    TermsOfService = new Uri("https://www.btkakademi.gov.tr"),
                     Contact = new OpenApiContact
                     {
                         Name = "Kaan KOÇ",
@@ -230,10 +233,23 @@ namespace WebApi.Extensions
                         new List<string>()
                     }
                 });
-              
+
             });
 
 
+        }
+
+        public static void RegisterRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+        }
+        public static void RegisterServices(this IServiceCollection services)
+        {
+            services.AddScoped<IBookService, BookManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
+            services.AddScoped<IAuthenticationService, AuthenticationManager>();
+            
         }
     }
 }
